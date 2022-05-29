@@ -14,6 +14,8 @@ public class Member {
 
     private String name;
 
+    private String phone;
+
     @OneToOne(mappedBy = "member", optional = false)
     private MemberAuthMgt memberAuthMgt;
 }
