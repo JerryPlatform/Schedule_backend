@@ -26,7 +26,7 @@ import java.util.function.Function;
 @Log
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/member")
+@RequestMapping("/v1/member")
 public class MemberController {
 
     @Value("${hemp.login.retention}")
