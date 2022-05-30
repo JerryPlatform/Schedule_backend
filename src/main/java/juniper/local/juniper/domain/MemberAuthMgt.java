@@ -16,6 +16,8 @@ public class MemberAuthMgt {
 
     private String password;
 
+    private String role;
+
     @OneToOne
     @JoinColumn(name = "member_id")
     private Member member;
