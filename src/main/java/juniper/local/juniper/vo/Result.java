@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class Result {
     @Builder.Default
-    protected String token;
+    protected String token = "";
 }
