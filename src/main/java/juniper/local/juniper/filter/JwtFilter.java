@@ -2,7 +2,6 @@ package juniper.local.juniper.filter;
 
 import juniper.local.juniper.security.JwtAuthToken;
 import juniper.local.juniper.security.JwtAuthTokenProvider;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -13,8 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Optional;
 
 public class JwtFilter extends OncePerRequestFilter {

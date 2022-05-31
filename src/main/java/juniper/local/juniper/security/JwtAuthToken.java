@@ -2,7 +2,6 @@ package juniper.local.juniper.security;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.DefaultClaims;
-import lombok.Getter;
 import lombok.extern.java.Log;
 
 import java.security.Key;
@@ -12,7 +11,6 @@ import java.util.Optional;
 
 @Log
 public class JwtAuthToken implements AuthToken<Claims> {
-    @Getter
     private final String token;
     private final Key key;
 
@@ -24,7 +22,10 @@ public class JwtAuthToken implements AuthToken<Claims> {
     public JwtAuthToken(String id, Key key, String role, Map<String, String> claims, Date expiredDate) {
         this.key = key;
         this.token = createJwtAuthToken(id, role, claims, expiredDate).get();
+    }
 
+    public String getToken() {
+        return this.token;
     }
 
     @Override
