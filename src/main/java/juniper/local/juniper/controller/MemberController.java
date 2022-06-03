@@ -1,7 +1,7 @@
 package juniper.local.juniper.controller;
 
 import juniper.local.juniper.domain.Member;
-import juniper.local.juniper.dto.LoginDto;
+import juniper.local.juniper.dto.AccountingDto;
 import juniper.local.juniper.service.MemberService;
 import juniper.local.juniper.vo.MemberVo;
 import juniper.local.juniper.vo.Response;
@@ -28,10 +28,20 @@ public class MemberController {
             .account(member.getMemberAuthMgt().getAccount())
             .build();
 
-    @PostMapping("/login")
-    public ResponseEntity<Response> login(@RequestBody LoginDto loginDto) {
+    @PostMapping("/save")
+    public ResponseEntity<Response> save() {
 
-        String token = memberService.memberLogin(loginDto);
+
+
+        return new ResponseEntity<>(Response.builder()
+                .response(Result.builder().token(null).build())
+                .content("success")
+                .build(), HttpStatus.OK);
+    }
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody AccountingDto accountingDto) {
+
+        String token = memberService.memberLogin(accountingDto);
 
         return new ResponseEntity<>(Response.builder()
                 .response(Result.builder().token(token).build())
