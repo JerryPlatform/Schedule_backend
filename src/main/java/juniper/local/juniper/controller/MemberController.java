@@ -2,6 +2,7 @@ package juniper.local.juniper.controller;
 
 import juniper.local.juniper.domain.Member;
 import juniper.local.juniper.dto.AccountingDto;
+import juniper.local.juniper.dto.MemberDto;
 import juniper.local.juniper.service.MemberService;
 import juniper.local.juniper.vo.MemberVo;
 import juniper.local.juniper.vo.Response;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 @Log
 @RestController
@@ -29,13 +31,11 @@ public class MemberController {
             .build();
 
     @PostMapping("/save")
-    public ResponseEntity<Response> save() {
-
-
+    public ResponseEntity<Response> save(@RequestBody MemberDto memberDto) {
 
         return new ResponseEntity<>(Response.builder()
                 .response(Result.builder().token(null).build())
-                .content("success")
+                .content(Stream.of(memberService.saveMember(memberDto)).map(mapMember))
                 .build(), HttpStatus.OK);
     }
     @PostMapping("/login")

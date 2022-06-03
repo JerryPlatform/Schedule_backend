@@ -1,7 +1,9 @@
 package juniper.local.juniper.service.impl;
 
 import juniper.local.juniper.domain.Member;
+import juniper.local.juniper.domain.MemberAuthMgt;
 import juniper.local.juniper.dto.AccountingDto;
+import juniper.local.juniper.dto.MemberDto;
 import juniper.local.juniper.repository.MemberRepository;
 import juniper.local.juniper.security.JwtAuthToken;
 import juniper.local.juniper.security.JwtAuthTokenProvider;
@@ -33,6 +35,23 @@ public class MemberServiceImpl implements MemberService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtAuthTokenProvider tokenProvider;
+
+    @Override
+    public Member saveMember(MemberDto memberDto) {
+        Member member = new Member();
+        MemberAuthMgt memberAuthMgt = new MemberAuthMgt();
+
+        memberAuthMgt.setRole(memberDto.getRole());
+        memberAuthMgt.setAccount(memberDto.getAccount());
+        memberAuthMgt.setPassword(memberDto.getPassword());
+        memberAuthMgt.setMember(member);
+
+        member.setMemberAuthMgt(memberAuthMgt);
+        member.setName(memberDto.getName());
+        member.setPhone(memberDto.getPhone());
+
+        return memberRepository.save(member);
+    }
 
     @Override
     public String memberLogin(AccountingDto accountingDto) {

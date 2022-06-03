@@ -10,12 +10,13 @@ import javax.persistence.*;
 @Setter
 public class Member {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     private String phone;
 
-    @OneToOne(mappedBy = "member", optional = false)
+    @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
     private MemberAuthMgt memberAuthMgt;
 }
