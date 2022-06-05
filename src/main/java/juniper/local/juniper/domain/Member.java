@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,4 +20,7 @@ public class Member {
 
     @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
     private MemberAuthMgt memberAuthMgt;
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
+    private List<LoginHistory> loginHistory;
 }
