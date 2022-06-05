@@ -1,14 +1,13 @@
 package juniper.local.juniper.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@IdClass(LoginHistory.LoginHistoryId.class)
 public class LoginHistory {
     @Id
     @ManyToOne(fetch = FetchType.EAGER)
@@ -42,6 +41,15 @@ public class LoginHistory {
         this();
         this.member = member;
         this.loginDt = loginDt;
+    }
+
+    public static class LoginHistoryId implements Serializable {
+        public Long member;
+        public Date loginDt;
+
+        public LoginHistoryId() {
+
+        }
     }
 
 }

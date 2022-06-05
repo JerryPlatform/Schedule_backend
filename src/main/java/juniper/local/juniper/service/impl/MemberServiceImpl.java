@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -59,6 +60,7 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.save(member);
     }
 
+    @Transactional
     @Override
     public String memberLogin(AccountingDto accountingDto) {
         PasswordAuthAuthenticationToken passToken = passwordAuth(accountingDto.getAccount(), accountingDto.getPassword());
@@ -77,6 +79,7 @@ public class MemberServiceImpl implements MemberService {
         return (PasswordAuthAuthenticationToken) authentication;
     }
 
+    @Transactional
     public String createToken(PasswordAuthAuthenticationToken passToken) {
         Date expiredDate = Date.from(LocalDateTime.now().plusMinutes(retentionMinutes).atZone(ZoneId.systemDefault()).toInstant());
         Map<String, String> claims = new HashMap<>();
