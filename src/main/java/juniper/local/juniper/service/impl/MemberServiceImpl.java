@@ -1,5 +1,6 @@
 package juniper.local.juniper.service.impl;
 
+import juniper.local.juniper.domain.LoginHistory;
 import juniper.local.juniper.domain.Member;
 import juniper.local.juniper.domain.MemberAuthMgt;
 import juniper.local.juniper.dto.AccountingDto;
@@ -16,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -35,6 +38,9 @@ public class MemberServiceImpl implements MemberService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtAuthTokenProvider tokenProvider;
+
+    @PersistenceContext
+    private EntityManager em;
 
     @Override
     public Member saveMember(MemberDto memberDto) {
@@ -85,6 +91,9 @@ public class MemberServiceImpl implements MemberService {
                 claims,
                 expiredDate
         );
+        Member m = em.getReference(Member.class, passToken.getId());
+        em.persist(new LoginHistory(m, new Date()));
+
         return token.getToken();
     }
 }

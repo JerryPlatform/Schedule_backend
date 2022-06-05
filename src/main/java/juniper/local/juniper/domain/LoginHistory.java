@@ -16,7 +16,9 @@ public class LoginHistory {
 
     @Id
     @Temporal(TemporalType.TIMESTAMP)
-    private Date regDt;
+    private Date loginDt;
+
+    private LoginType loginType;
 
     public static enum LoginType implements Meta {
         ACCOUNT("계정");
@@ -30,6 +32,16 @@ public class LoginHistory {
         public String getDescription() {
             return this.desc;
         }
+    }
+
+    public LoginHistory() {
+        this.loginType = LoginType.ACCOUNT;
+    }
+
+    public LoginHistory(Member member, Date loginDt) {
+        this();
+        this.member = member;
+        this.loginDt = loginDt;
     }
 
 }
