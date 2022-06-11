@@ -21,6 +21,6 @@ public class Member {
     @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
     private MemberAuthMgt memberAuthMgt;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<LoginHistory> loginHistory;
 }
