@@ -10,4 +10,7 @@ public interface LoginHistoryRepository extends JpaRepository<LoginHistory, Long
 
     @Query("select lh from LoginHistory lh where lh.member.id = :memberId ")
     List<LoginHistory> getMemberLoginHistory(Long memberId);
+
+    @Query("select lh from LoginHistory lh inner join fetch Member m ")
+    List<LoginHistory> getAllLoginHistory();
 }
