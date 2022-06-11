@@ -18,9 +18,9 @@ public class Member {
 
     private String phone;
 
-    @OneToOne(mappedBy = "member", optional = false, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "member", optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MemberAuthMgt memberAuthMgt;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<LoginHistory> loginHistory;
 }

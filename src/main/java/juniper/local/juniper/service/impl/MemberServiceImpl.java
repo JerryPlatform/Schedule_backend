@@ -87,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public List<LoginHistory> getLoginHistoryAll() {
-        return loginHistoryRepository.findAll();
+        return loginHistoryRepository.getAllLoginHistory();
     }
 
     public PasswordAuthAuthenticationToken passwordAuth(String account, String password) {
