@@ -1,5 +1,6 @@
 package juniper.local.juniper.service;
 
+import juniper.local.juniper.domain.LoginHistory;
 import juniper.local.juniper.domain.Member;
 import juniper.local.juniper.dto.AccountingDto;
 import juniper.local.juniper.dto.MemberDto;
@@ -13,4 +14,8 @@ public interface MemberService {
 
     Member getMember(Long memberId);
     List<Member> findAllMembers();
+
+    List<LoginHistory> getMemberLoginHistory(Long memberId);
+
+    List<LoginHistory> getLoginHistoryAll();
 }

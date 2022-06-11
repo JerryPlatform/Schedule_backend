@@ -5,6 +5,7 @@ import juniper.local.juniper.domain.Member;
 import juniper.local.juniper.domain.MemberAuthMgt;
 import juniper.local.juniper.dto.AccountingDto;
 import juniper.local.juniper.dto.MemberDto;
+import juniper.local.juniper.repository.LoginHistoryRepository;
 import juniper.local.juniper.repository.MemberRepository;
 import juniper.local.juniper.security.JwtAuthToken;
 import juniper.local.juniper.security.JwtAuthTokenProvider;
@@ -39,6 +40,8 @@ public class MemberServiceImpl implements MemberService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtAuthTokenProvider tokenProvider;
+
+    private final LoginHistoryRepository loginHistoryRepository;
 
     @PersistenceContext
     private EntityManager em;
@@ -75,6 +78,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public List<Member> findAllMembers() {
         return memberRepository.findAll();
+    }
+
+    @Override
+    public List<LoginHistory> getMemberLoginHistory(Long memberId) {
+        return loginHistoryRepository.getMemberLoginHistory(memberId);
+    }
+
+    @Override
+    public List<LoginHistory> getLoginHistoryAll() {
+        return loginHistoryRepository.findAll();
     }
 
     public PasswordAuthAuthenticationToken passwordAuth(String account, String password) {

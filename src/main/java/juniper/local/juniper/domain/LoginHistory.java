@@ -10,7 +10,7 @@ import java.util.Date;
 @IdClass(LoginHistory.LoginHistoryId.class)
 public class LoginHistory {
     @Id
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
 
     @Id
