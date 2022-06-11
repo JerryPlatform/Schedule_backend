@@ -68,6 +68,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member getMember(Long memberId) {
+        return memberRepository.getReferenceById(memberId);
+    }
+
+    @Override
     public List<Member> findAllMembers() {
         return memberRepository.findAll();
     }

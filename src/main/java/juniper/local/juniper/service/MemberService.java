@@ -10,5 +10,7 @@ public interface MemberService {
 
     Member saveMember(MemberDto memberDto);
     String memberLogin(AccountingDto accountingDto);
+
+    Member getMember(Long memberId);
     List<Member> findAllMembers();
 }
