@@ -18,7 +18,7 @@ public class Member {
 
     private String phone;
 
-    @OneToOne(mappedBy = "member", optional = false, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "member", fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     private MemberAuthMgt memberAuthMgt;
 
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
