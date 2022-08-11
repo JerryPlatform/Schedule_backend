@@ -2,8 +2,10 @@ package juniper.local.juniper.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -15,12 +17,15 @@ public class Schedule {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id")
-    private Member member;
+    @JoinColumn(name = "writer_id")
+    private Member writer;
 
     private String content;
 
     private Feel feel;
+
+    @CreationTimestamp
+    private Date regDt;
 
     public enum Feel implements Meta {
         NORMAL("보통"),
