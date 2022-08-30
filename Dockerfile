@@ -1,4 +1,6 @@
 FROM openjdk:8-jdk-alpine
-ARG JAR_FILE=build/libs/*.jar
+VOLUME /tmp
+ARG JAR_FILE=build/libs/juniper-0.0.1-SNAPSHOT.jar
+EXPOSE 8084
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
