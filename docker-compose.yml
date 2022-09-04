@@ -10,10 +10,6 @@ services:
     networks:
       - service_zone
     image: tjdals9638/nginx:latest
-    volumes:
-    - type: volume
-      source: nfs-log
-      target: /var/log/nginx
     ports:
     - "80:80"
     - "443:443"
@@ -22,10 +18,6 @@ services:
     networks:
       - service_zone
     image: tjdals9638/schedule-front:latest
-    volumes:
-    - type: volume
-      source: nfs-log
-      target: /var/log/front
     hostname: front.schedule
     ports:
     - "3000:3000"
@@ -36,10 +28,6 @@ services:
     extra_hosts:
       - "jerry-platform.db:121.151.25.182"
     image: tjdals9638/schedule-back:latest
-    volumes:
-    - type: volume
-      source: nfs-log
-      target: /var/log/back
     hostname: back.schedule
     ports:
     - "8000:8000"
