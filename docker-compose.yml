@@ -9,6 +9,8 @@ services:
   nginx:
     networks:
       - service_zone
+    extra_hosts:
+      - "front:172.30.1.78"
     image: tjdals9638/nginx:latest
     ports:
     - "80:80"
