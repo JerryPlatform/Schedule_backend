@@ -19,6 +19,7 @@ services:
       - service_zone
     image: tjdals9638/schedule-front:latest
     hostname: front.schedule
+    container_name: schedule-front
     ports:
     - "3000:3000"
 
@@ -29,5 +30,6 @@ services:
       - "jerry-platform.db:121.151.25.182"
     image: tjdals9638/schedule-back:latest
     hostname: back.schedule
+    container_name: schedule-back
     ports:
     - "8000:8000"
