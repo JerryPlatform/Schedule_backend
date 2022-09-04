@@ -1,0 +1,46 @@
+version: '3.9'
+
+networks:
+  service_zone:
+    driver: overlay
+    attachable: true
+
+services:
+  nginx:
+    networks:
+      - service_zone
+    image: tjdals9638/nginx:latest
+    volumes:
+    - type: volume
+      source: nfs-log
+      target: /var/log/nginx
+    ports:
+    - "80:80"
+    - "443:443"
+    depends_on:
+
+  front:
+    networks:
+      - service_zone
+    image: tjdals9638/schedule-front:latest
+    volumes:
+    - type: volume
+      source: nfs-log
+      target: /var/log/front
+    hostname: front.schedule
+    ports:
+    - "3000:3000"
+
+  back:
+    networks:
+      - service_zone
+    extra_hosts:
+      - "jerry-platform.db:121.151.25.182"
+    image: tjdals9638/schedule-back:latest
+    volumes:
+    - type: volume
+      source: nfs-log
+      target: /var/log/back
+    hostname: back.schedule
+    ports:
+    - "8000:8000"
