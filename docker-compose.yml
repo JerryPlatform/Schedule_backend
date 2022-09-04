@@ -10,7 +10,7 @@ services:
     networks:
       - service_zone
     extra_hosts:
-      - "front:172.30.1.78"
+      - "host.docker,internal:host-gateway"
     image: tjdals9638/nginx:latest
     ports:
     - "80:80"
