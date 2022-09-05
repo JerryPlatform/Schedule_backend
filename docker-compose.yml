@@ -16,7 +16,9 @@ services:
     container_name: nginx
     extra_hosts:
       - "front:121.151.25.182"
+      - "back:121.151.25.182"
       - "docker.jerry-platform:121.151.25.182"
+      - "jerry-platform:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
@@ -27,6 +29,13 @@ services:
     image: tjdals9638/schedule-front:latest
     hostname: front.schedule
     container_name: schedule-front
+    depends_on:
+      - back
+    extra_hosts:
+      - "jerry-platform:121.151.25.182"
+      - "back:121.151.25.182"
+    links:
+      - back
     ports:
     - "3000:80"
 
