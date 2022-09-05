@@ -16,6 +16,7 @@ services:
     container_name: nginx
     extra_hosts:
       - "front:121.151.25.182"
+      - "schedule-api:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
