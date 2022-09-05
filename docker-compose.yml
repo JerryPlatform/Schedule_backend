@@ -26,6 +26,8 @@ services:
     image: tjdals9638/schedule-front:latest
     hostname: front.schedule
     container_name: schedule-front
+    extra_hosts:
+      - "back.schedule:121.151.25.182"
     ports:
     - "3000:80"
 
