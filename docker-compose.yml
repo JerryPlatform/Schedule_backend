@@ -16,6 +16,7 @@ services:
     container_name: nginx
     extra_hosts:
       - "front:121.151.25.182"
+      - "docker.jerry-platform:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
