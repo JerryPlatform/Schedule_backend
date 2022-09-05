@@ -16,7 +16,6 @@ services:
     container_name: nginx
     extra_hosts:
       - "front:121.151.25.182"
-      - "schedule-api:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
@@ -27,8 +26,6 @@ services:
     image: tjdals9638/schedule-front:latest
     hostname: front.schedule
     container_name: schedule-front
-    extra_hosts:
-      - "back.schedule:121.151.25.182"
     ports:
     - "3000:80"
 
