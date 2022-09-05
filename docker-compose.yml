@@ -9,9 +9,13 @@ services:
   nginx:
     networks:
       - service_zone
-    extra_hosts:
-      - "host.docker,internal:host-gateway"
     image: tjdals9638/nginx:latest
+    depends_on:
+      - front
+      - back
+    container_name: nginx
+    extra_hosts:
+      - "front:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
@@ -23,7 +27,7 @@ services:
     hostname: front.schedule
     container_name: schedule-front
     ports:
-    - "3000:3000"
+    - "3000:80"
 
   back:
     networks:
