@@ -1,5 +1,7 @@
 version: '3.9'
 
+name: jerry-platform
+
 networks:
   service_zone:
     driver: overlay
@@ -11,41 +13,36 @@ services:
       - service_zone
     image: tjdals9638/nginx:latest
     depends_on:
-      - front
-      - back
+      - condition-frontend
+      - condition-backend
     container_name: nginx
     extra_hosts:
-      - "front:121.151.25.182"
-      - "back:121.151.25.182"
-      - "docker.jerry-platform:121.151.25.182"
       - "jerry-platform:121.151.25.182"
     ports:
     - "80:80"
     - "443:443"
+    - "8001:8001"
 
-  front:
+  condition-frontend:
     networks:
       - service_zone
-    image: tjdals9638/schedule-front:latest
-    hostname: front.schedule
-    container_name: schedule-front
+    image: tjdals9638/condition-frontend:latest
+    container_name: condition-frontend
     depends_on:
-      - back
+      - condition-backend
     extra_hosts:
       - "jerry-platform:121.151.25.182"
-      - "back:121.151.25.182"
     links:
-      - back
+      - condition-backend
     ports:
     - "3000:80"
 
-  back:
+  condition-backend:
     networks:
       - service_zone
     extra_hosts:
-      - "jerry-platform.db:121.151.25.182"
-    image: tjdals9638/schedule-back:latest
-    hostname: back.schedule
-    container_name: schedule-back
+      - "jerry-platform:121.151.25.182"
+    image: tjdals9638/condition-backend:latest
+    container_name: condition-backend
     ports:
     - "8000:8000"
