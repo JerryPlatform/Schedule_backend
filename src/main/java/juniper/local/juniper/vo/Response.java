@@ -9,5 +9,5 @@ import lombok.Setter;
 @Builder
 public class Response<T> {
     Result response;
-    T content;
+    T contents;
 }

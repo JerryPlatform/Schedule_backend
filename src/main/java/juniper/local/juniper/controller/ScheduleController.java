@@ -19,6 +19,6 @@ public class ScheduleController {
     @PostMapping("/save")
     public ResponseEntity<Response> scheduleSave(@RequestBody ScheduleSaveDto dto) {
         scheduleService.scheduleSave(dto);
-        return new ResponseEntity<>(Response.builder().response(Result.builder().build()).content(null).build(), HttpStatus.OK);
+        return new ResponseEntity<>(Response.builder().response(Result.builder().build()).contents(null).build(), HttpStatus.OK);
     }
 }

@@ -37,7 +37,7 @@ public class MemberController {
 
         return new ResponseEntity<>(Response.builder()
                 .response(Result.builder().token(null).build())
-                .content(Stream.of(memberService.saveMember(memberDto)).map(mapMember))
+                .contents(Stream.of(memberService.saveMember(memberDto)).map(mapMember))
                 .build(), HttpStatus.OK);
     }
     @PostMapping("/login")
@@ -51,7 +51,7 @@ public class MemberController {
 
         return new ResponseEntity<>(Response.builder()
                 .response(Result.builder().token(token).build())
-                .content(result)
+                .contents(result)
                 .build(), HttpStatus.OK);
     }
 
@@ -59,7 +59,7 @@ public class MemberController {
     public ResponseEntity<Response> findAllMembers() {
         return new ResponseEntity<>(Response.builder()
                 .response(Result.builder().build())
-                .content(memberService.findAllMembers().stream().map(mapMember))
+                .contents(memberService.findAllMembers().stream().map(mapMember))
                 .build(), HttpStatus.OK);
     }
 }
