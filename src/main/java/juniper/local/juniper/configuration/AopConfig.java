@@ -16,12 +16,12 @@ public class AopConfig {
 
         if (result != null) {
             if(result instanceof Result) {
-                ((Result)result).setToken("test");
+                ((Result)result).setToken("");
             } else if (result instanceof Response) {
-                ((Response)result).getResponse().setToken("test");
+                ((Response)result).getResponse().setToken("");
             } else if (result instanceof ResponseEntity){
                 Response response = (Response)((ResponseEntity)result).getBody();
-                response.getResponse().setToken("test");
+                response.getResponse().setToken("");
             }
         }
 
