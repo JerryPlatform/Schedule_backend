@@ -28,7 +28,11 @@ public class Schedule {
     private Date regDt;
 
     public enum Feel implements Meta {
+        BAD("나쁨"),
+        SLIGHTLYBAD("약간 나쁨"),
         NORMAL("보통"),
+        SLIGHTLYGOOD("약간 좋음"),
+        GOOD("좋음"),
         ;
 
         private String desc;
